@@ -1,5 +1,7 @@
 package com.pluralsight.conferencedemo.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,6 +24,10 @@ public class Speaker {
 
     @ManyToMany(mappedBy = "speakers")
     private List<Session> sessions;
+
+    @Lob
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] photo;
 
     public Speaker() {
     }
@@ -80,5 +86,13 @@ public class Speaker {
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
