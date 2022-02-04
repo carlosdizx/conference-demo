@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class GenericServiceImpl<T, ID extends Serializable> implements GenericServiceApi<T, ID> {
+public abstract class GenericServiceImpl<Entity, ID extends Serializable> implements GenericServiceApi<Entity, ID> {
     @Override
     @Transactional
-    public T save(T entity) {
+    public Entity save(Entity entity) {
         return getDao().save(entity);
     }
 
@@ -27,25 +27,25 @@ public abstract class GenericServiceImpl<T, ID extends Serializable> implements 
 
     @Override
     @Transactional(readOnly = true)
-    public T findByID(ID id) {
-        final Optional<T> optionalT = getDao().findById(id);
+    public Entity findByID(ID id) {
+        final Optional<Entity> optionalT = getDao().findById(id);
         return optionalT.isPresent() ? optionalT.get() : null;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<T> getAll() {
-        final List<T> list = new ArrayList<T>();
+    public List<Entity> getAll() {
+        final List<Entity> list = new ArrayList<>();
         getDao().findAll().forEach(list::add);
         return list;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<T> getAll(Pageable pageable) {
+    public Page<Entity> getAll(Pageable pageable) {
         return getDao().findAll(pageable);
     }
 
-    public abstract JpaRepository<T, ID> getDao();
+    public abstract JpaRepository<Entity, ID> getDao();
 
 }
