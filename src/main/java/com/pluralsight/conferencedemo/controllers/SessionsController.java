@@ -43,7 +43,7 @@ public class SessionsController {
     public Session update(@PathVariable Long id, @RequestBody Session session){
         Session existingSession = repository.getById(id);
         BeanUtils.copyProperties(session,existingSession,"id");
-        return repository.saveAndFlush(session);
+        return repository.saveAndFlush(existingSession);
     }
 
 }

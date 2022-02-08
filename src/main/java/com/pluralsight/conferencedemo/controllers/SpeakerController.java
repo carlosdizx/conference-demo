@@ -43,7 +43,7 @@ public class SpeakerController {
     public Speaker update(@PathVariable Long id, @RequestBody Speaker speaker){
         Speaker existingSpeaker = repository.getById(id);
         BeanUtils.copyProperties(speaker,existingSpeaker,"id");
-        return repository.saveAndFlush(speaker);
+        return repository.saveAndFlush(existingSpeaker);
     }
 
 }
