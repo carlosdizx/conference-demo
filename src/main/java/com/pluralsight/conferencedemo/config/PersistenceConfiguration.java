@@ -13,10 +13,9 @@ public class PersistenceConfiguration {
     public DataSource dataSource() {
         final DataSourceBuilder builder = DataSourceBuilder.create();
         builder.driverClassName("org.postgresql.Driver");
-        builder.url("jdbc:postgresql://localhost:5432/conference?useSSL=false");
-        builder.username("postgres");
-        builder.password("7423102Ca");
-        System.out.println("Configurado la base de datos");
+        builder.url("jdbc:postgresql://ec2-34-206-148-196.compute-1.amazonaws.com:5432/daemo2823kt849?useSSL=false");
+        builder.username("uuirazckckhsdz");
+        builder.password("dd64acd045d47a1ec208bd805f26443e37f2a3587c52c13fa4bd6dd5a72b5761");
         return builder.build();
     }
 }
